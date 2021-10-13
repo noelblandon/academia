@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Score;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,27 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('index');
+})->middleware(['auth']);*/
+/*
+Route::group(['auth'],function(){
+    Route::get('/', Dashboard::class);
+
+    Route::domain('{account}.example.com')->group(function () {
+    Route::get('user/{id}', function ($account, $id) {
+        //
+    });
 });
+});
+*/
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', Dashboard::class);
+    Route::get('/score/{grado}/{seccion}/{asignatura}', Score::class);
+});
+
 
 Route::get('/district', function () {
 
@@ -25,8 +43,5 @@ Route::get('/district', function () {
    dd($district->teacher->district->city->state);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

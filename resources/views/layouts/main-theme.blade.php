@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{{ asset('dist/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/all.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <title>Dashboard | Tailwind Admin</title>
+    <title>@yield('title') | Academia</title>
+    @livewireStyles
 </head>
 
 <body>
@@ -23,20 +24,20 @@
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
-        @include('components.header')
+        @include('layouts.components.header')
         <!--/Header-->
 
         <div class="flex flex-1">
             <!--Sidebar-->
-                @include('components.sidebar')
+                @include('layouts.components.sidebar')
             <!--/Sidebar-->
             <!--Main-->
-                @include('components.main')
+                @include('layouts.components.main')
              
             <!--/Main-->
         </div>
         <!--Footer-->
-            @include('components.footer')
+            @include('layouts.components.footer')
         <!--/footer-->
 
     </div>
@@ -46,6 +47,7 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('dist/main.js') }}"></script>
+@livewireScripts
 </body>
 
 </html>
