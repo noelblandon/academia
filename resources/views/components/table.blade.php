@@ -5,7 +5,7 @@
 
 
 <table class="table text-grey-darkest">
-    <thead class="bg-grey-dark text-white text-normal">
+    <thead class="bg-grey-dark text-white text-normal ">
         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
              {{ $theader }}
         </tr>
@@ -16,3 +16,5 @@
     </tbody>
 
 </table>
+
+

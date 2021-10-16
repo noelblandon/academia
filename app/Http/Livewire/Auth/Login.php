@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Session;
 
 class Login extends Component {
 
@@ -15,9 +16,10 @@ class Login extends Component {
     public $username = '';
     public $password = '';
     public $alert = 'block';
+    public $loading = false;
    
     public function login(){
-
+        $this->resetValidation();
         $request = [
             'username' => $this->username,
             'password' => $this->password,
@@ -48,18 +50,32 @@ class Login extends Component {
                 return false;
             }else{
                 $user_id = User::where('pass', $this->password)->first();
-                Auth::loginUsingId($user_id->id_user);
-                return redirect()->to('/');
+           
+                if(!$user_id){
+                    $this->resetValidation();
+                    $errors = $this->getErrorBag();
+                    $this->addError('error', 'Nombre de Usuario y contraseña incorrectos');        
+                    return false;
+                }else{
+                    $user_id = User::where('pass', $this->password)->first();
+                    Auth::loginUsingId($user_id->id_user);
+                    $url = genderPicture(auth()->user()->teacher->sexo);
+                    Session::put('url', $url);
+                    return redirect()->to('/');
+                }
             }
         
 
 
     }
 
- 
+      
 
-    public function mount(){
-        
+
+    public function mount(){  
+         $this->username = '';
+         $this->password = '';
+         $this->loading = false;
     }
 
  

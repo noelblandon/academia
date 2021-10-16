@@ -1,8 +1,13 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Score;
+use App\Http\Livewire\Score\Score;
+use App\Http\Livewire\Score\SetScore;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +36,20 @@ Route::group(['auth'],function(){
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', Dashboard::class);
-    Route::get('/score/{grado}/{seccion}/{asignatura}', Score::class);
+    Route::get('/', Score::class);
+    Route::get('/score/{grado}/{seccion}/{asignatura}', SetScore::class);
+
+    Route::post('/logout',function(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
+    })->name('logout');
 });
 
 
-Route::get('/district', function () {
-
-    $district = User::find(18);
-
-   dd($district->teacher->district->city->state);
+Route::get('/admin',function(){
+    return view('layouts.main');
 });
 
 

@@ -6,7 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\User;
+use App\Models\UserType;
+use App\Models\Teacher;
 
 class User extends Authenticatable
 {
@@ -29,9 +30,17 @@ class User extends Authenticatable
         return $this->hasOne(UserType::class,'id_tipo_user','tipo_user');
     }
 
+    public function teacher(){
+        return $this->hasOne(Teacher::class,'id_docente','id_docente');
+    }
+
 
     public function getFullnameAttribute(){
         return "{$this->nombre} {$this->apellido}";
+    }
+    public function getShortNameAttribute(){
+
+        return  splitString($this->nombre)[0].' '. splitString($this->apellido)[0];
     }
 
     /**

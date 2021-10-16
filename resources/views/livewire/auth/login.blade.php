@@ -1,9 +1,13 @@
-
-
+<div>
+<div wire:loading wire:targer="login">
+            <x-loading />     
+    </div>
 <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+
+    
   <div class="w-full max-w-lg">
     <div class="leading-loose mt-10">
-   
+    
 
     @if($errors->has('username'))    
         <x-alert type="block" :msg="$errors->first('username')" />
@@ -17,7 +21,8 @@
                     <h2 class="text-center text-4xl  font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold text-red-900">Log in</h2>
                     <div class="mt-12">
-                        <form wire:submit.prevent="login" method="POST" name="login">
+                    
+                    <form wire:submit.prevent="login" method="POST" name="login">
                             <div>
                                 <div class="text-sm font-bold  tracking-wide text-lg text-red-900">Nombre de Usuario</div>
                                 <input class="w-full text-lg py-2 border-b border-red-900 focus:outline-none focus:border-indigo-500 bg-transparent text-red-900 placeholder-red-900" type="text" name="username" wire:model.lazy="username" placeholder="nombre de usuario">
@@ -33,7 +38,7 @@
                             <div class="mt-10 mb-8">
                                 <button class="bg-red-700 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-red-500"
-                                type="submit">
+                                type="submit" >
                                     Iniciar Sesión
                                 </button>
                             </div>                       
@@ -51,4 +56,5 @@
    
     </div>
   </div>
+</div>
 </div>
