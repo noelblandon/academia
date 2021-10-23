@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    @stack('css')
 </head>
 
 <body>
@@ -122,6 +123,7 @@
             </div>
         </div>
     </div>
+    @stack('js')
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>
@@ -185,6 +187,10 @@
     <script src="{{ asset('/assets/js/vertical/vertical-layout.min.js ') }}"></script>
 
     <script type="text/javascript" src="{{ asset('/assets/js/script.js') }} "></script>
+   
+    @stack('frame-js')
+    @stack('js')
+    
 </body>
 
 </html>

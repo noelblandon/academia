@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Score\Score;
 use App\Http\Livewire\Score\SetScore;
+use App\Http\Controllers\ScoreController;
 
 
 /*
@@ -38,6 +39,7 @@ Route::group(['auth'],function(){
 Route::middleware(['auth'])->group(function () {
     Route::get('/', Score::class);
     Route::get('/score/{grado}/{seccion}/{asignatura}', SetScore::class);
+    Route::post('/score/store', [ScoreController::class, 'store'])->name('score.store');
 
     Route::post('/logout',function(Request $request){
         Auth::logout();
@@ -51,6 +53,41 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/admin',function(){
     return view('layouts.main');
 });
+
+
+Route::any('/test',function(){
+
+    //Checking internet connection status with predefined function
+    switch (connection_status()){
+        case CONNECTION_NORMAL:
+        $msg = 'You are connected to internet.';
+        break;
+        case CONNECTION_ABORTED:
+        $msg = 'No Internet connection';
+        break;
+        case CONNECTION_TIMEOUT:
+        $msg = 'Connection time-out';
+        break;
+        case (CONNECTION_ABORTED & CONNECTION_TIMEOUT):
+        $msg = 'No Internet and Connection time-out';
+        break;
+        default:
+        $msg = 'Undefined state';
+        break;
+    }
+//display connection status
+echo $msg;
+/*$response = null;
+system("ping -c 1 google.com", $response);
+if($response == 0)
+{
+    // this means you are connected
+}
+ 
+ */
+});
+
+
 
 
 require __DIR__.'/auth.php';

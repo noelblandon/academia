@@ -39,4 +39,7 @@ class SetScore extends Component{
                ->layout('layouts.main')
                ->section('page-body');
     }
+
+  
+    
 }
