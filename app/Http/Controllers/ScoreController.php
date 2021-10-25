@@ -9,7 +9,11 @@ use App\Models\Score as Scores;
 
 class ScoreController extends Controller
 {
-   
+    private $parcial_cuant = array('','ICE_cuant','IICE_cuant','IIICE_cuant','IVCE_cuant');
+    private $parcial_cual = array('','ICE_cual','IICE_cual','IIICE_cual','IVCE_cual');
+    
+    
+    
     private function getLetter($value){
         $letra = '';
         switch (true) {
@@ -33,16 +37,17 @@ class ScoreController extends Controller
     }
 
     private function queryUpdate($request){
-        $parcial_cuant = array('','ICE_cuant','IICE_cuant','IIICE_cuant','IVCE_cuant');
-        $parcial_cual = array('','ICE_cual','IICE_cual','IIICE_cual','IVCE_cual');
+       
       
         $score = Scores::select('ICE_cuant','IICE_cuant','ISemestre_cuant','IIICE_cuant','IVCE_cuant','IISemestre_cuant','notaFinal_cuant')
                          ->firstWhere('idnotas', $request->id);
 
         $cuant = number_format($request->value);
         $cual = $this->getLetter(intval($request->value));
-        $update_val = [$parcial_cuant[$request->parcial] => $cuant,
-                       $parcial_cual[$request->parcial] => $cual ];   
+        $update_val = [
+                       $this->parcial_cuant[$request->parcial] => $cuant,
+                       $this->parcial_cual[$request->parcial] => $cual 
+                    ];   
         
         if($request->parcial == 2){
             $semestre_cuan = number_format((intval($score->ICE_cuant)+intval($cuant))/2);
@@ -88,14 +93,61 @@ class ScoreController extends Controller
 
     }
    
-   
+    private function queryLetterUpdate($request){
+ 
+        $cuant = $request->value;
+        $cual = ' ';
+        $update_val = [
+            $this->parcial_cuant[$request->parcial] => $cuant,
+            $this->parcial_cual[$request->parcial] => $cual 
+        ];   
+
+        if($request->parcial == 2){
+            $cuan = $request->value;
+            $cual = ' ';
+                
+            return $update_val = [
+                'IICE_cuant' => $cuan,
+                'IICE_cual' => $cual, 
+                'ISemestre_cuant' => $cuan,
+                'ISemestre_cual' => $cual,
+                'notaFinal_cuant' => $cuan,
+                'notaFinal_cual' => $cual  
+                ]; 
+            }   
+
+        if($request->parcial == 3 || $request->parcial == 4){
+            $cuan = $request->value;
+            $cual = ' ';
+                
+            return $update_val = [
+                'IIICE_cuant' => $cuan,
+                'IIICE_cual' => $cual, 
+                'IVCE_cuant' => $cuan,
+                'IVCE_cual' => $cual, 
+                'IISemestre_cuant' => $cuan,
+                'IISemestre_cual' => $cual,
+                'notaFinal_cuant' => $cuan,
+                'notaFinal_cual' => $cual  
+                ]; 
+        }     
+
+
+        return $update_val;
+    }
+
     public function store(Request $request){
 
        if($request->ajax()){
-
+     
+            if(!is_numeric($request->value)){
+                $score = $this->queryLetterUpdate($request);
+            }else{
+                $score = $this->queryUpdate($request);
+            }
          
             $updated = Scores::where('idnotas', $request->id)
-                               ->update($this->queryUpdate($request));
+                               ->update($score);
 
             return  response()->json($updated,200);
         }

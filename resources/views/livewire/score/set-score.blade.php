@@ -46,34 +46,32 @@
 @endsection
 
 @push('frame-js')
-<script>
+<!--script>
      $(document).ready(function(){
           $("select").change(function(event){
                event.preventDefault();
-               const id = $(this).data('id');
+               console.log();
+               /*const id = $(this).data('id');
                const parcial = $(this).data('parcial');
                const value = $(this).val();
                var datas = {_token: "{{ csrf_token() }}", id:id, parcial:parcial,value:value};
+               var wireKey = $(this).closest('tr').attr('wire:id');
 
                $.ajax({
                     type: 'POST',
                     url: "{{ route('score.store') }}",
                     data: datas,
                     success: function(data) { 
-
-/*                         Livewire.hook('component.initialized', component => {
-                                        //
-                                        })*/
-
-
+                    
                     },
                cache: false
                }).fail(function (jqXHR, textStatus, error) {
                     console.log(jqXHR, textStatus, error);
-               });
+                    alert("No se pudo guadar los datos")
+               });*/
           });
      });
-</script>
+</script-->
  
 @endpush
 

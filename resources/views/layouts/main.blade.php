@@ -33,7 +33,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <livewire:styles/>
     @stack('css')
+   
 </head>
 
 <body>
@@ -188,6 +190,8 @@
 
     <script type="text/javascript" src="{{ asset('/assets/js/script.js') }} "></script>
    
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <livewire:scripts/>
     @stack('frame-js')
     @stack('js')
     

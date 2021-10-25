@@ -22,23 +22,23 @@ class CreateTableScore extends Migration
             $table->string('sexo',20);
             $table->string('asignatura',50);
 
-            $table->string('ICE_cuant',3)->nullable();
+            $table->string('ICE_cuant',10)->nullable();
             $table->string('ICE_cual',3)->nullable();
-            $table->string('IICE_cuant',3)->nullable();
+            $table->string('IICE_cuant',10)->nullable();
             $table->string('IICE_cual',3)->nullable();
-            $table->string('ISemestre_cuant',3)->nullable();
+            $table->string('ISemestre_cuant',10)->nullable();
             $table->string('ISemestre_cual',3)->nullable();
-            $table->string('IIICE_cuant',3)->nullable();
+            $table->string('IIICE_cuant',10)->nullable();
             $table->string('IIICE_cual',3)->nullable();
-            $table->string('IVCE_cuant',3)->nullable();
+            $table->string('IVCE_cuant',10)->nullable();
             $table->string('IVCE_cual',3)->nullable();
-            $table->string('IISemestre_cuant',3)->nullable();
+            $table->string('IISemestre_cuant',10)->nullable();
             $table->string('IISemestre_cual',3)->nullable();
-            $table->string('notaFinal_cuant',3)->nullable();
+            $table->string('notaFinal_cuant',10)->nullable();
             $table->string('notaFinal_cual',3)->nullable();
 
 
-            $table->string('especial',30)->nullable();
+            $table->string('especial',10)->nullable();
             $table->string('docente',100)->nullable();
             $table->string('seccion',15)->nullable();          
             $table->string('grado',50)->nullable();

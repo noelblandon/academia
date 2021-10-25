@@ -1,11 +1,11 @@
 
-<tr {{ stripeTable($score->idnotas) }}>                        
-    <x-table.td :value="$score->carnet" />
+<tr {{ stripeTable($idnotas) }}>                        
+    <x-table.td :value="$carnet" />
     <x-table.td :value="$fullname" />
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" data-parcial="1" data-id="{{ $score->idnotas }}" >
-            <option>{{ $score->ICE_cuant }}</option>
-            @if($p1 == 'Activar' )
+        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,1)" >
+            <option selected>{{ $p1n }}</option>
+            @if($enabled->hab_ICE == 'Activar' )
                 <option>Retirado</option>
                 <option>PSN</option>
                 <option>SD</option>
@@ -17,14 +17,14 @@
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="p1-{{ $score->idnotas }}">
-            <option>{{ $score->ICE_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="p1l">
+            <option selected>{{ $p1l }}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" data-parcial="2" data-id="{{ $score->idnotas }}" >
-            <option>{{ $score->IICE_cuant }}</option>    
-            @if($p2 == 'Activar' )
+        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,2)">
+            <option selected>{{ $p2n }}</option>    
+            @if($enabled->hab_IICE == 'Activar' )
                 <option>Retirado</option>
                 <option>PSN</option>
                 <option>SD</option>
@@ -36,25 +36,25 @@
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="p2-{{ $score->idnotas }}">
-            <option>{{ $score->IICE_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="p2l">
+            <option selected>{{ $p2l }}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" id="s1n-{{ $score->idnotas }}">
-            <option>{{ $score->ISemestre_cuant }}</option>
+        <select  class="form-control fill table-select" wire:model="s1n">
+            <option selected>{{ $s1n }}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="s1l-{{ $score->idnotas }}">
-            <option>{{ $score->ISemestre_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="s1l">
+            <option selected>{{ $s1l }}</option>
         </select>
     </x-table.td>
 
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" data-parcial="3" data-id="{{ $score->idnotas }}" >
-            <option>{{ $score->IIICE_cuant }}</option>
-            @if($p3 == 'Activar' )
+        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,3)" >
+            <option selected>{{ $p3n }}</option>
+            @if($enabled->hab_IIICE == 'Activar' )
                 <option>Retirado</option>
                 <option>PSN</option>
                 <option>SD</option>
@@ -65,14 +65,14 @@
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="p3-{{ $score->idnotas }}">
-            <option>{{ $score->IIICE_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="p3l">
+            <option selected>{{ $p3l }}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" data-parcial="4" data-id="{{ $score->idnotas }}" >
-        <option>{{ $score->IVCE_cuant }}</option>
-            @if($p4 == 'Activar' )
+        <select  class="form-control fill table-select" wire:click="changeScore($event.target.value,4)">
+        <option selected>{{ $p4n }}</option>
+            @if($enabled->hab_IVCE == 'Activar' )
                 <option>Retirado</option>
                 <option>PSN</option>
                 <option>SD</option>
@@ -83,29 +83,29 @@
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="p4-{{ $score->idnotas }}">
-            <option>{{ $score->IVCE_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="p4l">
+            <option selected>{{ $p4l }}</option>
         </select>
         </x-table.td>
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" id="s2n-{{ $score->idnotas }}">
-            <option>{{ $score->IISemestre_cuant }}</option>
+        <select  class="form-control fill table-select" wire:model="s2n">
+            <option selected>{{ $s2n}}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" id="s2l-{{ $score->idnotas }}">
-            <option>{{ $score->IISemestre_cual }}</option>
+        <select  class="form-control fill table-select" wire:model="s2l">
+            <option selected>{{ $s2l }}</option>
         </select>
     </x-table.td>
 
     <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" id="nfn-{{ $score->idnotas }}">
-            <option>{{ $score->notaFinal_cuant }}</option>
+        <select  class="form-control fill table-select" wire:model="nfn">
+            <option selected>{{ $nfn }}</option>
         </select>
     </x-table.td>
     <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select"  id="nfl-{{ $score->idnotas }}">
-            <option>{{ $score->notaFinal_cual }}</option>
+        <select  class="form-control fill table-select"  wire:model="nfl">
+            <option selected>{{ $nfl }}</option>
         </select>
     </x-table.td>
  
