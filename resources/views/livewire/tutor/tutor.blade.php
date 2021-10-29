@@ -1,13 +1,19 @@
-@section('title','Calificaciones')
+@section('title','Tutoria')
 @section('page-header')
      <x-layouts.page-header 
           title="Calificaciones" 
-          subtitle="Listas de asignatura para el año lectivo {{ date('Y') }}" />
+          subtitle="Tutoria y Promedio del año lectivo {{ date('Y') }}" >
+                  
+                    <li class="breadcrumb-item">
+                        <a href="#" class="text-capitalize">Tutoria</a>
+                    </li>
+          
+          </x-layouts.page-header>
 @endsection
 @section('page-body')
 
 <x-card.card>
-    <x-card.header title="Listas de asignatura para el año lectivo  {{ date('Y') }}" 
+    <x-card.header title="Tutoria y Promedio del año lectivo   {{ date('Y') }}" 
                     description=" " title-class="text-capitalize" />
     <x-card.body>
           <x-table.table>
@@ -20,7 +26,7 @@
                </x-table.header>
                <x-table.body>
                     @forelse($scores as $index => $score)
-                    <livewire:score.score-detail :score="$score" :index="$index" :wire:key="'tr-'.$index"   />
+                         <livewire:tutor.tutor-detail :score="$score" :index="$index" :wire:key="'tr-'.$index"   />
                     @empty
                       <tr>
                            <td colspan="5" class="text-center p-5">

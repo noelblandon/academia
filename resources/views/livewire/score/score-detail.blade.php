@@ -1,112 +1,12 @@
 
-<tr {{ stripeTable($idnotas) }}>                        
-    <x-table.td :value="$carnet" />
-    <x-table.td :value="$fullname" />
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,1)" >
-            <option selected>{{ $p1n }}</option>
-            @if($enabled->hab_ICE == 'Activar' )
-                <option>Retirado</option>
-                <option>PSN</option>
-                <option>SD</option>
-                @for($i=100;0 < $i; $i--)
-                <option>{{ $i }}</option>
-                @endfor
-            @endif    
-
-        </select>
+<tr {{ stripeTable($index) }}>   
+    <x-table.td :value="$index + 1 " class="text-center"/>
+    <x-table.td :value="$score->grado " />
+    <x-table.td :value="$score->seccion " />
+    <x-table.td :value="$score->asignatura " />
+    <x-table.td class="pt-2">
+        <button class="btn waves-effect waves-light btn-inverse" onclick="$('#loader-redirect').show();window.location.href= '/score/{{ setUrl($score->grado) }}/{{ setUrl($score->seccion) }}/{{ setUrl($score->asignatura) }}';" >
+            <i class=" ti-pencil-alt"></i>Agregar Nota
+        </button>
     </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="p1l">
-            <option selected>{{ $p1l }}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,2)">
-            <option selected>{{ $p2n }}</option>    
-            @if($enabled->hab_IICE == 'Activar' )
-                <option>Retirado</option>
-                <option>PSN</option>
-                <option>SD</option>
-                @for($i=100;0 < $i; $i--)
-                <option>{{ $i }}</option>
-                @endfor
-            @endif    
-     
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="p2l">
-            <option selected>{{ $p2l }}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" wire:model="s1n">
-            <option selected>{{ $s1n }}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="s1l">
-            <option selected>{{ $s1l }}</option>
-        </select>
-    </x-table.td>
-
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select"  wire:click="changeScore($event.target.value,3)" >
-            <option selected>{{ $p3n }}</option>
-            @if($enabled->hab_IIICE == 'Activar' )
-                <option>Retirado</option>
-                <option>PSN</option>
-                <option>SD</option>
-                @for($i=100;0 < $i; $i--)
-                <option>{{ $i }}</option>
-                @endfor
-            @endif 
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="p3l">
-            <option selected>{{ $p3l }}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" wire:click="changeScore($event.target.value,4)">
-        <option selected>{{ $p4n }}</option>
-            @if($enabled->hab_IVCE == 'Activar' )
-                <option>Retirado</option>
-                <option>PSN</option>
-                <option>SD</option>
-                @for($i=100;0 < $i; $i--)
-                <option>{{ $i }}</option>
-                @endfor
-            @endif 
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="p4l">
-            <option selected>{{ $p4l }}</option>
-        </select>
-        </x-table.td>
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" wire:model="s2n">
-            <option selected>{{ $s2n}}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select" wire:model="s2l">
-            <option selected>{{ $s2l }}</option>
-        </select>
-    </x-table.td>
-
-    <x-table.td style="padding-right: 0px;">        
-        <select  class="form-control fill table-select" wire:model="nfn">
-            <option selected>{{ $nfn }}</option>
-        </select>
-    </x-table.td>
-    <x-table.td style="padding-left: 0px;">
-        <select  class="form-control fill table-select"  wire:model="nfl">
-            <option selected>{{ $nfl }}</option>
-        </select>
-    </x-table.td>
- 
-</tr>
+</tr>   

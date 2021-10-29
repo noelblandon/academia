@@ -24,12 +24,14 @@
                     <x-table.th colspan="2" name="III Parcial" class="text-center" />       
                     <x-table.th colspan="2" name="IV Parcial" class="text-center" />
                     <x-table.th colspan="2" name="II Semestre" class="text-center" />  
-                    <x-table.th colspan="2" name=" Nota Final" class="text-center" />  
+                    <x-table.th colspan="2" name="Nota Final" class="text-center" /> 
+                    <x-table.th colspan="1" name="Esp" class="text-center" />  
+                    <x-table.th colspan="1" name="  " class="text-center" />  
 
                </x-table.header>
                <x-table.body>
                     @forelse($scores as $score)
-                        <livewire:score.score-detail :score="$score" :wire:key="'tr-' . $score->idnotas" />
+                        <livewire:score.set-score-detail :score="$score" :wire:key="'tr-'.$score->idnotas" />
                     @empty
                       <tr>
                            <td colspan="19" class="text-center p-5">
@@ -44,36 +46,6 @@
 </x-card.card>
 
 @endsection
-
-@push('frame-js')
-<!--script>
-     $(document).ready(function(){
-          $("select").change(function(event){
-               event.preventDefault();
-               console.log();
-               /*const id = $(this).data('id');
-               const parcial = $(this).data('parcial');
-               const value = $(this).val();
-               var datas = {_token: "{{ csrf_token() }}", id:id, parcial:parcial,value:value};
-               var wireKey = $(this).closest('tr').attr('wire:id');
-
-               $.ajax({
-                    type: 'POST',
-                    url: "{{ route('score.store') }}",
-                    data: datas,
-                    success: function(data) { 
-                    
-                    },
-               cache: false
-               }).fail(function (jqXHR, textStatus, error) {
-                    console.log(jqXHR, textStatus, error);
-                    alert("No se pudo guadar los datos")
-               });*/
-          });
-     });
-</script-->
- 
-@endpush
 
 @push('css')
     <style>

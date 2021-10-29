@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Score\Score;
 use App\Http\Livewire\Score\SetScore;
-use App\Http\Controllers\ScoreController;
+use App\Http\Livewire\Tutor\Tutor;
+use App\Http\Livewire\Tutor\Average;
 
 
 /*
@@ -39,7 +40,8 @@ Route::group(['auth'],function(){
 Route::middleware(['auth'])->group(function () {
     Route::get('/', Score::class);
     Route::get('/score/{grado}/{seccion}/{asignatura}', SetScore::class);
-    Route::post('/score/store', [ScoreController::class, 'store'])->name('score.store');
+    Route::get('/tutor', Tutor::class);
+    Route::get('/tutor/promedio/{grado}/{seccion}', Average::class);
 
     Route::post('/logout',function(Request $request){
         Auth::logout();
@@ -50,9 +52,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/admin',function(){
-    return view('layouts.main');
-});
 
 
 Route::any('/test',function(){

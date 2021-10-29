@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Score;
+namespace App\Http\Livewire\Tutor;
 
 use Livewire\Component;
 
-class ScoreDetail extends Component{
-    
+class TutorDetail extends Component{
+
     public $score;
     public $index;
 
@@ -13,10 +13,8 @@ class ScoreDetail extends Component{
         $this->score = $score;
         $this->index = $index;
     }
-    
-    
-    
+
     public function render(){
-        return view('livewire.score.score-detail');
+        return view('livewire.tutor.tutor-detail');
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class aside-simple-menu extends Component
 {
+ 
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,7 @@ class aside-simple-menu extends Component
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**

@@ -27,8 +27,9 @@
                                     </div>
                                 </form>
                             </div-->
-                            <x-layouts.aside-simple-menu name="Calificaciones" url="/" class="active" />
-                            <x-layouts.aside-simple-menu name="Tutor" url="/tutor" class=" " />
+                  
+                            <x-layouts.aside-simple-menu name="Calificaciones" url="/"  class=" {{ $class['score'] }}" />
+                            <x-layouts.aside-simple-menu name="Tutor" url="/tutor" :class="$class['tutor']" />
 
                             <div class="pcoded-navigation-label">UI Element</div>
                             <ul class="pcoded-item pcoded-left-item">

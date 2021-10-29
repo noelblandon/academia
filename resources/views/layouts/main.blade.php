@@ -39,9 +39,9 @@
 </head>
 
 <body>
-    
+
  <!-- Pre-loader start -->
- <div class="theme-loader">
+ <div class="theme-loader" >
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -93,6 +93,8 @@
             </div>
         </div>
     </div>
+
+   
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
@@ -125,7 +127,6 @@
             </div>
         </div>
     </div>
-    @stack('js')
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>
@@ -189,10 +190,7 @@
     <script src="{{ asset('/assets/js/vertical/vertical-layout.min.js ') }}"></script>
 
     <script type="text/javascript" src="{{ asset('/assets/js/script.js') }} "></script>
-   
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <livewire:scripts/>
-    @stack('frame-js')
     @stack('js')
     
 </body>
