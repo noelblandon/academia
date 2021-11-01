@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', Score::class);
     Route::get('/score/{grado}/{seccion}/{asignatura}', SetScore::class);
     Route::get('/tutor', Tutor::class);
-    Route::get('/tutor/promedio/{grado}/{seccion}', Average::class);
+    Route::get('/tutor/promedio/{grado}/{seccion}/{parcial}', Average::class);
 
     Route::post('/logout',function(Request $request){
         Auth::logout();

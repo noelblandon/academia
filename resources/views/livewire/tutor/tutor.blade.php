@@ -17,6 +17,7 @@
                     description=" " title-class="text-capitalize" />
     <x-card.body>
           <x-table.table>
+        
                <x-table.header>
                     <x-table.th colspan="1" name="#" class="text-center"/>
                     <x-table.th colspan="1" name="Grado" />

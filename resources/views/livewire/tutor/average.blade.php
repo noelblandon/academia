@@ -13,7 +13,8 @@
     <x-card.header :title="$title " 
                     description=" " title-class="text-capitalize" />
     <x-card.body>
-          <livewire:tutor.average-parcial :grade="$grade" :seccion="$seccion" :wire:key="'promedio-parciales'" />
+    <livewire:tutor.average-detail :grade="$grade" :seccion="$seccion" :parcial="$parcial" :wire:key="'promedio-parciales'" />
+
     </x-card.body>  
 </x-card.card>
 
