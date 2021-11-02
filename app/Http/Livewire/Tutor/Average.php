@@ -10,12 +10,13 @@ class Average extends Component{
     public $grade;
     public $seccion;
     public $parcial;
+    private $par = array('','Primer Parcial','Segundo Parcial','Primer Semestre','Tercer Parcial','Cuarto Parcial','Segundo Semestre','Nota Final');
       
     public function mount($grado,$seccion,$parcial){
         $this->grade = str_replace('-',' ',$grado);
         $this->seccion = $seccion;
         $this->parcial = $parcial;
-        $this->title = 'Registro de promedio del '.$this->grade .' '. $seccion;
+        $this->title = 'Promedio del '.$this->par[$parcial].' del '.$this->grade .' '. $seccion;
        
     }
     
