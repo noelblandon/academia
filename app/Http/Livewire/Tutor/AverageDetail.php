@@ -19,13 +19,25 @@ class AverageDetail extends Component{
     private $index1;
     private $index2;
     private $parcial_cuant = array('','ICE_cuant','IICE_cuant','ISemestre_cuant','IIICE_cuant','IVCE_cuant','IISemestre_cuant','notaFinal_cuant');
+    private $promedio_cuant = array('','prom_ICE','prom_IICE','prom_ISemestre','prom_IIICE','prom_IVCE','prom_IISemestre','prom_notaFinal');
     private $nota_final_array = array("Historia","Geografía","Economía","Filosofía","Sociología");
     
     
     
     
     public function guardarPromedio(){
-        dd($this->scores);
+      
+        for($i=0;$i < count($this->scores);$i++){
+            $lugar = count($this->scores[$i]) - 1;
+            Average::where('id_promedio',$this->scores[$i][0])
+            ->update([$this->promedio_cuant[intval($this->parcial)] => $this->scores[0][$lugar]]);
+        }
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',  
+            'message' => 'Promedio', 
+            'text' => 'Promedio Guardado'
+        ]);
     }
 
 

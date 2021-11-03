@@ -94,7 +94,7 @@
         </div>
     </div>
 
-   
+    
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
@@ -116,7 +116,7 @@
                             <div class="main-body"><!-- Main-body start -->                            
                                 <div class="page-wrapper"><!-- Page-wrapper start -->                                 
                                     <div class="page-body"><!-- Page-body start -->
-                                        @yield('page-body')
+                                      @yield('page-body')
                                     </div><!-- Page-body end -->                                    
                                 </div><!-- Page-wrapper end --> 
                                 <div id="styleSelector"> </div>

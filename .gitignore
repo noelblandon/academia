@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+#composer update --no-scripts
+#After that, you have to run composer update in order to create a new composer.lock and php artisan config:cache after that and you should be good to go.

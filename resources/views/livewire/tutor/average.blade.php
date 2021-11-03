@@ -62,7 +62,7 @@
 <script src="{{ asset('assets/js/pdfjs/jspdf.plugin.autotable.min.js') }}"></script>  
 <script >
   function generate() {  
-    var doc = new jsPDF('p', 'pt', 'letter');  
+   /* var doc = new jsPDF('p', 'pt', 'letter');  
     var htmlstring = '';  
     var tempVarToCheckPageHeight = 0;  
     var pageHeight = 0;  
@@ -103,7 +103,10 @@
             minCellHeight: 40  
         }  
     })  
-    doc.save('Marks_Of_Students.pdf');  
+    doc.save('Marks_Of_Students.pdf');  */
+    var doc = new jsPDF()
+    doc.autoTable({ html: '#promedio' })
+    doc.save('table.pdf')
 }  
 </script>
 
