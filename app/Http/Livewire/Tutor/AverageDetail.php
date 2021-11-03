@@ -19,7 +19,11 @@ class AverageDetail extends Component{
     private $index1;
     private $index2;
     private $parcial_cuant = array('','ICE_cuant','IICE_cuant','ISemestre_cuant','IIICE_cuant','IVCE_cuant','IISemestre_cuant','notaFinal_cuant');
-    private $nota_final = array("Historia","Geografía","Economía","Filosofía","Sociología");
+    private $nota_final_array = array("Historia","Geografía","Economía","Filosofía","Sociología");
+    
+    
+    
+    
     public function guardarPromedio(){
         dd($this->scores);
     }
@@ -104,17 +108,20 @@ class AverageDetail extends Component{
             for($sc=0;$sc<count($courses);$sc++){
                     
                 $score = $this->getScore($courses[$sc],$student); 
-                    if(array_search($score->nota,$this->nota_final) != ""){                    
+               
+                    if(in_array(trim($courses[$sc]->asignatura),$this->nota_final_array)){  
+                        
                         if($ciencia_sociales_true){
                             $ciencias_sociales = (intval($ciencias_sociales) + intval($score->nota))/2;
                             $this->arrayPush(trim($ciencias_sociales)); 
                             $promedio = $promedio + intval($ciencias_sociales);
                             $this->index2 = $sc;
+                            $ciencia_sociales_true = false;
                         }else{
                             $this->index1 = $sc;
                             $ciencias_sociales = $score->nota;
                         }
-                        $ciencia_sociales_true != $ciencia_sociales_true;
+                        $ciencia_sociales_true = true;
                     }else{
                         $this->arrayPush(trim($score->nota)); 
                         $promedio = $promedio + intval($score->nota);
@@ -145,7 +152,7 @@ class AverageDetail extends Component{
     private function getScoresAverage($students,$courses){
         $index1 = 0;  
         $index2 = 0;  
-        $this->student_data = array();                   
+        $this->student_data = [];                   
         for($st=0;$st<count($students);$st++){
 
             $this->arrayPush(trim($this->averages[$st]));
@@ -155,24 +162,20 @@ class AverageDetail extends Component{
             $this->arrayPush(trim($students[$st]->sexo));
             
             $promedio = 0;
-            if(intval($this->parcial == 7)){
+            if(intval($this->parcial) == 7){               
                 $promedio = $this->notaFinal($courses,$students[$st]);
+                $promedio = $promedio / (count($courses)-1);
             }else{
                 $promedio = $this->notaParcial($courses,$students[$st]);
+                $promedio = $promedio / (count($courses));
             }
 
-            $promedio = $promedio / (count($courses));
+            
             $promedio = number_format($promedio,2,'.',',');
-            $this->arrayPush(trim($promedio)); 
+            $this->arrayPush(trim($promedio));             
             $scores[$st] = $this->student_data;
-
-        }  
-       
-            if(intval($this->parcial == 7)){
-                unset($scores[$index1+6]);    
-                $this->courses[$index2] = "Ciencias Sociales";
-            }
-
+            $this->student_data = [];
+        } 
             return $scores;
     }
 
@@ -193,7 +196,15 @@ class AverageDetail extends Component{
         $this->averages = $this->getAverages($students_data);
                   
         $this->scores = $this->getScoresAverage($students_data,$courses_data);
-
+        
+        
+        if(intval($this->parcial == 7)){
+           
+          $name='Ciencias Sociales ('.$courses_data[$this->index1]->asignatura.'/'.$courses_data[$this->index2]->asignatura.')';
+          $courses_data[$this->index2]->asignatura = $name ;
+          unset($courses_data[$this->index1]);    
+            
+        }
 
         return view('livewire.tutor.average-detail',['clases' => $courses_data ]);
     }

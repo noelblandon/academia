@@ -13,13 +13,13 @@
         <!--div class="dropdown-success dropdown open"-->
             <button class="btn btn-success dropdown-toggle waves-effect waves-light " type="button" id="dropdown-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class=" ti-pencil-alt"></i>Promedio</button>
             <div class="dropdown-menu" aria-labelledby="dropdown-3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(1)" >Primer Parcial</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(2)">Segundo Parcial</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(3)">Primer Semestre</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(4)">Tercer Parcial</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(5)">Cuarto Parcial</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(6)">Segundo Semestre</a>
-                <a href="javascript:void(0)" class="dropdown-item waves-light waves-effect" wire:click="testRedirect(7)">Nota Final</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/1" class="dropdown-item waves-light waves-effect" >Primer Parcial</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/2" class="dropdown-item waves-light waves-effect" >Segundo Parcial</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/3" class="dropdown-item waves-light waves-effect" >Primer Semestre</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/4" class="dropdown-item waves-light waves-effect" >Tercer Parcial</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/5" class="dropdown-item waves-light waves-effect" >Cuarto Parcial</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/6" class="dropdown-item waves-light waves-effect" >Segundo Semestre</a>
+                <a href="/tutor/promedio/{{ setUrl($this->grado) }}/{{ setUrl($this->seccion) }}/7" class="dropdown-item waves-light waves-effect" >Nota Final</a>
             </div>
         <!--/div-->
     
