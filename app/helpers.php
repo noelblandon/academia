@@ -1,5 +1,7 @@
 <?php
 
+$parcial_cuantitativo = array('','ICE_cuant','IICE_cuant','ISemestre_cuant','IIICE_cuant','IVCE_cuant','IISemestre_cuant','notaFinal_cuant');
+$promedio_cuantitativo = array('','prom_ICE','prom_IICE','prom_ISemestre','prom_IIICE','prom_IVCE','prom_IISemestre','prom_notaFinal');
 
 function getYear() {
 
