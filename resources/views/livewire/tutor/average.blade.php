@@ -9,11 +9,12 @@
      </x-layouts.page-header>
 @endsection
 @section('page-body')
+
 <div>
 <x-card.card>
     <x-card.header :title="$title " 
                     description=" " title-class="text-capitalize">
-
+          <livewire:components.excell-export :grado="$grade" :seccion="$seccion" :parcial="$parcial" wire:key="excel-button"/>
     </x-card.header>               
     <x-card.body>
     <x-table.table id="promedio">

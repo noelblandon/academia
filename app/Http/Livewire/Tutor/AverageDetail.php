@@ -58,16 +58,6 @@ class AverageDetail extends Component{
         return $average;            
     }
 
-    private function getScore($course){
-        return Score::select(''.$this->parcial_cuant[intval($this->parcial)].' as nota' )
-                                    ->where('grado',$this->student->grado)
-                                    ->where('seccion',$this->student->seccion)
-                                    ->where('anioLectivo',date('Y'))
-                                    ->where('asignatura',$course)
-                                    ->where('carnet',$this->student->carnet)                                    
-                                    ->first();
-    }
-
 
     private function notaFinal($courses){
         $promedio = 0;
@@ -75,7 +65,7 @@ class AverageDetail extends Component{
         $cs = 0;
 
             foreach($courses as $course){
-                $score = $this->getScore($course->asignatura);
+                $score = getScoreByCourse($this->parcial,$course->asignatura,$this->student);
                 if(in_array(trim($course->asignatura),$this->nota_final_array)){  
                     if($csb){
                         $cs = (intval($cs) + intval($score->nota))/2;
@@ -99,7 +89,7 @@ class AverageDetail extends Component{
         $promedio = 0;
         $this->score = [];
           foreach ($this->courses as $index => $course) {
-            $score = $this->getScore($course->asignatura);
+            $score = getScoreByCourse($this->parcial,$course->asignatura,$this->student);
             $this->score[$index] = trim($score->nota); 
             $promedio = $promedio + intval($score->nota);
           }
