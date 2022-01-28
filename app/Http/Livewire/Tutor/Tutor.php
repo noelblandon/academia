@@ -11,7 +11,7 @@ class Tutor extends Component
     public function render(){
         $data = Scores::select('grado','seccion','asignatura')
         ->where('docente',auth()->user()->fullname)
-        ->where('anioLectivo',date('Y'))
+        ->where('anioLectivo',env('ANIO_LECTIVO'))
         ->where('asignatura','Conducta')
         ->distinct('grado')
         ->orderBy('grado','desc')

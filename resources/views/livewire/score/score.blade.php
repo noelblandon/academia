@@ -2,12 +2,12 @@
 @section('page-header')
      <x-layouts.page-header 
           title="Calificaciones" 
-          subtitle="Listas de asignatura para el año lectivo {{ date('Y') }}" />
+          subtitle="Listas de asignatura para el año lectivo {{ env('ANIO_LECTIVO') }}" />
 @endsection
 @section('page-body')
 
 <x-card.card>
-    <x-card.header title="Listas de asignatura para el año lectivo  {{ date('Y') }}" 
+    <x-card.header title="Listas de asignatura para el año lectivo  {{ env('ANIO_LECTIVO') }}" 
                     description=" " title-class="text-capitalize" />
     <x-card.body>
           <x-table.table>

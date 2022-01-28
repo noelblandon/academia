@@ -63,7 +63,7 @@ function getAllCourses($grado,$seccion,$course){
     return \App\Models\Score::select('asignatura')
                 ->where('grado',$grado)
                 ->where('seccion',$seccion)
-                ->where('anioLectivo',date('Y'))
+                ->where('anioLectivo',env('ANIO_LECTIVO'))
                 ->where('asignatura','!=','Conducta')
                 ->where('asignatura','!=',$course) 
                 ->distinct('asignatura')
@@ -75,7 +75,7 @@ function getStudentsByGradoSeccion($grado,$seccion){
     return \App\Models\Score::select('carnet','nombres','apellidos','sexo','grado','seccion' )
                     ->where('grado',$grado)
                     ->where('seccion',$seccion)
-                    ->where('anioLectivo',date('Y'))
+                    ->where('anioLectivo',env('ANIO_LECTIVO'))
                     ->distinct('carnet')
                     ->orderBy('apellidos','asc')
                     ->orderBy('nombres','asc')
@@ -83,6 +83,7 @@ function getStudentsByGradoSeccion($grado,$seccion){
 }
 
 function isNotaFinalCourses($courses){
+    $nota_final_array = array("Historia","Geografía","Economía","Filosofía","Sociología");
     $ciencia_sociales_true = false;
     $index = [];
     for($sc=0;$sc<count($courses);$sc++){                
@@ -105,7 +106,7 @@ function getScoreByCourse($parcial,$student,$course){
     return \App\Models\Score::select(''.$parcial_cuant[intval($parcial)].' as nota' )
                                 ->where('grado',$student->grado)
                                 ->where('seccion',$student->seccion)
-                                ->where('anioLectivo',date('Y'))
+                                ->where('anioLectivo',env('ANIO_LECTIVO'))
                                 ->where('asignatura',$course)
                                 ->where('carnet',$student->carnet)                                    
                                 ->first();

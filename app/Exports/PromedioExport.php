@@ -17,6 +17,7 @@ class PromedioExport implements FromArray, WithHeadings {
     private $parciales =  array('','prom_ICE','prom_IICE','prom_ISemestre','prom_IIICE','prom_IVCE','prom_IISemestre','prom_notaFinal', );
     private $students;
     private $courses;
+    private $clases;
     
     public function __construct($grado,$seccion,$parcial){
         $this->grado = $grado;
@@ -25,22 +26,22 @@ class PromedioExport implements FromArray, WithHeadings {
         $this->parcial_prom = $this->parciales[$parcial];
         $course  = getCourseByParcial($grado,$parcial);      
         $this->courses  = getAllCourses($grado,$seccion,$course);
+        $this->clases   = getAllCourses($grado,$seccion,$course);
         $this->students = getStudentsByGradoSeccion($grado,$seccion);
 
     }
 
     public function headings(): array{
-        $clases = $this->courses;
         $headers = array('Carnet','Nombre','Sexo');
 
-        if(intval($this->parcial == 7)){
-            $index = isNotaFinalCourses($clases);
-            $name ='Ciencias Sociales ('.$clases[$index[0]]->asignatura.'/'.$clases[$index[1]]->asignatura.')';
-            $clases[$index[1]]->asignatura = $name ;
-            unset($clases[$index[0]]);    
+        if(intval($this->parcial) == 7){
+            $index = isNotaFinalCourses($this->clases);
+            $name ='Ciencias Sociales ('.$this->clases[$index[0]]->asignatura.'/'.$this->clases[$index[1]]->asignatura.')';
+            $this->clases[$index[1]]->asignatura = $name ;
+            unset($this->clases[$index[0]]);    
         }
 
-        foreach($clases as $clase){
+        foreach($this->clases as $clase){
             array_push($headers,$clase->asignatura);
         }
         array_push($headers,'Promedio');
@@ -81,7 +82,7 @@ class PromedioExport implements FromArray, WithHeadings {
                     array_push($data,$score->nota);
                 }               
             }
-            $average = Average::select(''.$this->parcial_prom.' as nota')->where('carnet',$student->carnet)->where('anioLectivo',date('Y'))->first();
+            $average = Average::select(''.$this->parcial_prom.' as nota')->where('carnet',$student->carnet)->where('anioLectivo',env('ANIO_LECTIVO'))->first();
             array_push($data,$average->nota);
             return $data;
     }
@@ -91,7 +92,7 @@ class PromedioExport implements FromArray, WithHeadings {
         foreach ($courses as $index => $course) {
             array_push($data,getScoreByCourse($this->parcial,$student,$course->asignatura)->nota);
         }
-        $average = Average::select(''.$this->parcial_prom.' as nota')->where('carnet',$student->carnet)->where('anioLectivo',date('Y'))->first();
+        $average = Average::select(''.$this->parcial_prom.' as nota')->where('carnet',$student->carnet)->where('anioLectivo',env('ANIO_LECTIVO'))->first();
         array_push($data,$average->nota);
         return $data;
     }

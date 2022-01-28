@@ -27,8 +27,9 @@ class SetScore extends Component{
     }    
     
     public function render(){
+        
         $data = Scores::where('docente',auth()->user()->fullname)
-                                ->where('anioLectivo',date('Y'))    
+                                ->where('anioLectivo',env('ANIO_LECTIVO'))    
                                 ->where('grado',str_replace('-',' ',$this->grado))                         
                                 ->where('seccion',$this->seccion) 
                                 ->where('asignatura',$this->asignatura) 
